@@ -1,8 +1,6 @@
 import pygame, numpy, random, sys, variables, datetime, ui
 import World.world as world
-import Objects.camera as camera
-import Objects.mob as mob
-import Objects.totem as totem
+import camera
 import KeyManager.InputManager as InputManager
 from pygame.locals import *
 import ctypes
@@ -11,17 +9,15 @@ import ctypes
 #the variables.py file
 
 camera = camera.Camera((variables.worldWidth/2,variables.worldHeight/2))
-variables.worldWidth = input("World width (in chunks): ")
-variables.worldHeight = input("World height (in chunks): ")
+#variables.worldWidth = input("World width (in chunks): ")
+#variables.worldHeight = input("World height (in chunks): ")
 world = world.World(camera, variables.worldWidth, variables.worldHeight)
 clock = pygame.time.Clock()
 ui = ui.UI(world)
 
-Input = InputManager.Input()
-
 debug = False
 
-resolution = 0
+Input = InputManager.Input()
 
 pygame.display.set_mode((variables.windowWidth, variables.windowHeight))
 

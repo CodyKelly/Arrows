@@ -13,7 +13,7 @@ windowHeight = 1000
 
 tileSize = 16#tile width & height, in pixels
 chunkSize = 10 #chunk size in tiles
-worldWidth = 30 #world size in chunks
+worldWidth = 10 #world size in chunks
 worldHeight = 70
 realWorldWidth = worldWidth * chunkSize * tileSize #world size in pixels WE'VE GONE FULL CIRCLE
 realWorldHeight = worldHeight * chunkSize * tileSize
