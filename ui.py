@@ -26,8 +26,10 @@ class UI:
             
             #calculating and drawing camera square on minimap
             displaySurface = pygame.display.get_surface()
-            cameraWidth = displaySurface.get_width()/variables.tileSize*self.width/world.getChunkWidth()/variables.chunkSize
-            cameraHeight = displaySurface.get_height()/variables.tileSize*self.height/world.getChunkHeight()/variables.chunkSize
+            displayWidth = displaySurface.get_width()
+            displayHeight = displaySurface.get_height()
+            cameraWidth = displayWidth/variables.tileSize*self.width/variables.worldWidth/variables.chunkSize
+            cameraHeight = displayHeight/variables.tileSize*self.height/variables.worldHeight/variables.chunkSize
             cameraRect = pygame.Rect((0,0),(cameraWidth/variables.scale,cameraHeight/variables.scale))
             cameraRect.center = (cx,cy)
             pygame.draw.rect(newMap, (255,255,255), cameraRect, 2)

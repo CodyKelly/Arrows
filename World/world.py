@@ -36,7 +36,11 @@ class Tiles(object):
         self.tiles.append(Tile('flower2', 'pictures/flowers/flower2.png','land'))
         self.tiles.append(Tile('flower3', 'pictures/flowers/flower3.png','land'))
         self.tiles.append(Tile('flower4', 'pictures/flowers/flower4.png','land'))
-        self.tiles.append(Tile('sand', 'pictures/sand.png','land'))
+        self.tiles.append(Tile('sand1', 'pictures/sand/sand1.png','land'))
+        self.tiles.append(Tile('sand2', 'pictures/sand/sand2.png','land'))
+        self.tiles.append(Tile('sand3', 'pictures/sand/sand3.png','land'))
+        self.tiles.append(Tile('sand4', 'pictures/sand/sand4.png','land'))
+        self.tiles.append(Tile('sand5', 'pictures/sand/sand5.png','land'))
         self.tiles.append(Tile('bush', 'pictures/bush.png','land'))
         self.tiles.append(Tile('swater', 'pictures/swater.png','water'))
         self.tiles.append(Tile('water', 'pictures/water.png','water'))
@@ -44,13 +48,14 @@ class Tiles(object):
         print(str(len(self.tiles))+ ' tiles loaded') #added code to 'count these bitches'        
         #Now, these variables right heah (joisey talk right thaeh) control
         #what tiles have what range of values. So:
-        self.dwaterline = 50
-        self.waterline = 90 #if a value is below 95, it's deepwater
-        self.swaterline = 100 #if a value is below 105, it's just plain ole water
+        self.dwaterline = 50 #if a value is above this, it's mid-level water
+        self.waterline = 90 #if a value is above this, it's shallow water
+        self.swaterline = 100 #if a value is above this, I DON'T KNOW WHAT HAPPENS!
         
-        #if a value is below 110, I DON'T KNOW WHAT HAPPENS!
+        self.sandline = 135  #Oh it's sand, nvm
         
-        self.sandline = 103  #Oh it's sand, nvm
+        
+        self.grassline = 150
         
     def get_tile(self, name):
         for t in self.tiles:
@@ -70,10 +75,83 @@ class Tiles(object):
             tile = self.get_tile('swater')
             return(tile)
         elif(value > self.swaterline and value < self.sandline):
-            tile = self.get_tile('sand')
-            return(tile)
-        else:
+                rand2 = random.random()
+                split = 1.0/5.0
+                if(rand2 <= split):
+                    tile = self.get_tile('sand1')
+                    return(tile)
+                elif(rand2 > split and rand2 <= split*2):
+                    tile = self.get_tile('sand2')
+                    return(tile)
+                elif(rand2 > split*2 and rand2 <= split*3):
+                    tile = self.get_tile('sand3')
+                    return(tile)                   
+                elif(rand2 > split*3 and rand2 <= split*4):
+                    tile = self.get_tile('sand4')
+                    return(tile)
+                else:
+                    tile = self.get_tile('sand5')
+                    return(tile)
+        elif(value > self.sandline and value < self.grassline):
             rand = random.random()
+            if rand <= 0.6:
+                rand2 = random.random()
+                split = 1.0/5.0
+                if(rand2 <= split):
+                    tile = self.get_tile('sand1')
+                    return(tile)
+                elif(rand2 > split and rand2 <= split*2):
+                    tile = self.get_tile('sand2')
+                    return(tile)
+                elif(rand2 > split*2 and rand2 <= split*3):
+                    tile = self.get_tile('sand3')
+                    return(tile)                   
+                elif(rand2 > split*3 and rand2 <= split*4):
+                    tile = self.get_tile('sand4')
+                    return(tile)
+                else:
+                    tile = self.get_tile('sand5')
+                    return(tile)            
+            elif rand > 0.6 and rand <= 0.985:
+                # Deciding what grass the tile is, makes the ground look more varied.
+                rand2 = random.random()
+                split = 1.0/5.0
+                if(rand2 <= split):
+                    tile = self.get_tile('grass1')
+                    return(tile)
+                elif(rand2 > split and rand2 <= split*2):
+                    tile = self.get_tile('grass2')
+                    return(tile)
+                elif(rand2 > split*2 and rand2 <= split*3):
+                    tile = self.get_tile('grass3')
+                    return(tile)                   
+                elif(rand2 > split*3 and rand2 <= split*4):
+                    tile = self.get_tile('grass4')
+                    return(tile)
+                else:
+                    tile = self.get_tile('grass5')
+                    return(tile)
+            elif rand > 0.985 and rand <= 0.99:
+                #Bush
+                tile = self.get_tile('bush')
+                return(tile)
+            elif rand > 0.99 and rand <= 1:
+                #Flower
+                rand2 = random.randint(1,4)
+                if rand2 == 1:
+                    tile = self.get_tile('flower1')
+                    return(tile)
+                if rand2 == 2: 
+                    tile = self.get_tile('flower2')
+                    return(tile)
+                if rand2 == 3:               
+                    tile = self.get_tile('flower3')
+                    return(tile)
+                if rand2 == 4:       
+                    tile = self.get_tile('flower4')
+                    return(tile)
+        elif(value > self.sandline):
+            rand = random.random()            
             if rand <= 0.985:
                 # Deciding what grass the tile is, makes the ground look more varied.
                 rand2 = random.random()
@@ -229,15 +307,19 @@ class World(object):
         pX = int(pX/self.tileSize/self.chunkSize)#we convert them to tile and then chunk coords
         pY = int(pY/self.tileSize/self.chunkSize)
         
-        renderRange = 10
+        windowWidth = screen.get_width()
+        windowHeight = screen.get_height()
+        
+        renderRangeX = variables.realWorldWidth-windowWidth/variables.tileSize/variables.chunkSize+1
+        renderRangeY = variables.realWorldHeight-windowHeight/variables.tileSize/variables.chunkSize+1
         
         #int((float(display.get_width())/(float(variables.realWorldSize)*variables.scale))*float(variables.worldWidth))+1
         
 
         for x in range(self.width):
             for y in range(self.height):
-                #if(x > pX - renderRange and x < pX + renderRange and y > pY - renderRange and y < pY + renderRange):
-                self.chunks[x][y].draw(screen, (self.offsetX, self.offsetY),variables.scale)
+                if(x > pX - renderRangeX and x < pX + renderRangeX and y > pY - renderRangeY and y < pY + renderRangeY):
+                    self.chunks[x][y].draw(screen, (self.offsetX, self.offsetY),variables.scale)
         '''Going through the object list, updating stuff'''
         
 ##Object Updating        

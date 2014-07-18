@@ -1,5 +1,6 @@
-import perlin_noise
-import random
+import perlin_noise,random,variables,pygame
+pygame.font.init()
+font=pygame.font.Font('pictures/Font/Market_Deco.ttf',30)
 
 class IslandGenerator:
 
@@ -82,9 +83,13 @@ class IslandGenerator:
 
         """Generates the actual island."""
 
+        pic=font.render('Loading...', 1,(255,255,255))
+        variables.screen.blit(pic, (10,10))        
+        pygame.display.flip()
 
         #Uses perlin noise to generate a random noise map. Everything after
         #this line just masks the random noise to look more like an island.
+        
         
         print('generating noise map...')
         self.map = perlin_noise.PerlinNoiseGenerator().generate_noise(width,
@@ -103,8 +108,29 @@ class IslandGenerator:
             particle_map.append(row)
         print('filled')
         
-        print('assigning values...')
-        for i in range(0, int((width*height)*(.85))):
+        print('assigning values...')        
+        
+        someVariable = int((width*height)*(.85))
+        percentTimer = 300
+        count = 0
+        
+        for i in range(0, someVariable):
+            if(count == percentTimer):
+                variables.screen.fill((0,0,0))
+                worldPic=font.render('World dimensions (chunks): '+ str((variables.worldWidth,variables.worldHeight)), 1,(255,255,255))
+                chunkPic = font.render('Chunk size (tiles): '+str(variables.chunkSize), 1,(255,255,255))
+                percentPic=font.render('Generating island: '+str(int(float(i)*100/float(someVariable))) + '%', 1,(255,255,255))
+                variables.screen.blit(worldPic, (10,10))
+                variables.screen.blit(chunkPic, (10,40))            
+                variables.screen.blit(percentPic, (10,70))            
+                pygame.display.flip()
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()            
+                count = 0
+            else:
+                count += 1
             x = random.randint(15, self.map_width-16)
             y = random.randint(15, self.map_height-16)
 
@@ -148,6 +174,6 @@ class IslandGenerator:
         print('smoothing...')
         self.smoothen()
         self.smoothen()
-        print('smoothed')
+        print('smoothied')
         print('map generated')
         return self.map
