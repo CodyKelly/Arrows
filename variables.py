@@ -1,4 +1,4 @@
-import pygame, numpy
+import pygame
 
 '''This file is like an old habit of mine to just store random data into a file
 so they're accessible from anywhere
