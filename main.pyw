@@ -55,9 +55,9 @@ while True:
                 if event.key == K_ESCAPE:
                     pygame.quit()
                     sys.exit()                
-                if event.key == K_i:
-                    st = str(datetime.datetime.utcnow())
-                    pygame.image.save(world.get_surface(),'pictures/map/'+st+'.png')
+                #if event.key == K_i:
+                    #st = str(datetime.datetime.utcnow())
+                    #pygame.image.save(world.get_surface(),'pictures/map/'+st+'.jpeg')
                 if(event.key == K_F1):
                     if(debug==False):
                         debug = True
