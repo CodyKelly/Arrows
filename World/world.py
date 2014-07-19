@@ -1,60 +1,49 @@
-import numpy, random, pygame, variables
-from island_generator import *
-
-'''So I might move the two tile-related classes into their own file 
-but I'm feelin a little lazy right now so I'll do it later.'''
+from numpy import zeros
+import random
+import pygame
+import island_generator
 
 class Tile(object):
-    '''A tile is basically a name and a picture. Any more convoluted than that
-    and ur just plain dumb. Dummy.'''
+    '''A tile just assigns a name to a picture'''
     
     def __init__(self, name, pic, tileType):
         self.pic = pygame.image.load(pic).convert()
         self.name = name
         self.tileType = tileType
-        self.scale = variables.scale
     def draw(self, surface, (x,y)):
-        
-        '''It also has the ability to make a picture of itself and post it on
-        anything, just like a white girl.'''
         surface.blit(self.pic, (x,y))
     def get_type(self):
         return(self.tileType)
     
 class Tiles(object):
     def __init__(self):
-        self.tiles = []
-        '''Bunch o' tiles types right here. Bunch of em. Okay, not THAT many
-        but still, a good... what... fifteen or so? Maybe... seven?
-        TODO: MAKE A PROGRAM TO COUNT THESE BITCHES'''
-        self.tiles.append(Tile('grass1', 'pictures/grass/grass1.png','land'))
-        self.tiles.append(Tile('grass2', 'pictures/grass/grass2.png','land'))
-        self.tiles.append(Tile('grass3', 'pictures/grass/grass3.png','land'))
-        self.tiles.append(Tile('grass4', 'pictures/grass/grass4.png','land'))
-        self.tiles.append(Tile('grass5', 'pictures/grass/grass5.png','land'))
-        self.tiles.append(Tile('flower1', 'pictures/flowers/flower1.png','land'))
-        self.tiles.append(Tile('flower2', 'pictures/flowers/flower2.png','land'))
-        self.tiles.append(Tile('flower3', 'pictures/flowers/flower3.png','land'))
-        self.tiles.append(Tile('flower4', 'pictures/flowers/flower4.png','land'))
-        self.tiles.append(Tile('sand1', 'pictures/sand/sand1.png','land'))
-        self.tiles.append(Tile('sand2', 'pictures/sand/sand2.png','land'))
-        self.tiles.append(Tile('sand3', 'pictures/sand/sand3.png','land'))
-        self.tiles.append(Tile('sand4', 'pictures/sand/sand4.png','land'))
-        self.tiles.append(Tile('sand5', 'pictures/sand/sand5.png','land'))
-        self.tiles.append(Tile('bush', 'pictures/bush.png','land'))
-        self.tiles.append(Tile('swater', 'pictures/swater.png','water'))
-        self.tiles.append(Tile('water', 'pictures/water.png','water'))
-        self.tiles.append(Tile('dwater', 'pictures/dwater.png','water'))
-        print(str(len(self.tiles))+ ' tiles loaded') #added code to 'count these bitches'        
-        #Now, these variables right heah (joisey talk right thaeh) control
-        #what tiles have what range of values. So:
-        self.dwaterline = 50 #if a value is above this, it's mid-level water
-        self.waterline = 90 #if a value is above this, it's shallow water
-        self.swaterline = 100 #if a value is above this, I DON'T KNOW WHAT HAPPENS!
+        '''This class holds all the different tiles in a list'''
+        self.tiles = [Tile('grass1', 'pictures/grass/grass1.png','land'),
+                      Tile('grass2', 'pictures/grass/grass2.png','land'),
+                      Tile('grass3', 'pictures/grass/grass3.png','land'),
+                      Tile('grass4', 'pictures/grass/grass4.png','land'),
+                      Tile('grass5', 'pictures/grass/grass5.png','land'),
+                      Tile('flower1', 'pictures/flowers/flower1.png','land'),
+                      Tile('flower2', 'pictures/flowers/flower2.png','land'),
+                      Tile('flower3', 'pictures/flowers/flower3.png','land'),
+                      Tile('flower3', 'pictures/flowers/flower3.png','land'),
+                      Tile('flower4', 'pictures/flowers/flower4.png','land'),
+                      Tile('sand1', 'pictures/sand/sand1.png','land'),
+                      Tile('sand2', 'pictures/sand/sand2.png','land'),
+                      Tile('sand3', 'pictures/sand/sand3.png','land'),
+                      Tile('sand4', 'pictures/sand/sand4.png','land'),
+                      Tile('sand5', 'pictures/sand/sand5.png','land'),
+                      Tile('bush', 'pictures/bush.png','land'),
+                      Tile('swater', 'pictures/swater.png','water'),
+                      Tile('water', 'pictures/water.png','water'),
+                      Tile('dwater', 'pictures/dwater.png','water'),]
+        print(str(len(self.tiles))+ ' tiles loaded')
         
-        self.sandline = 135  #Oh it's sand, nvm
-        
-        
+        '''These values determine what tiles are what'''
+        self.dwaterline = 50 # if a value is above this, it's mid-level water
+        self.waterline = 90 # if a value is above this, it's shallow water
+        self.swaterline = 100 # if a value is above this, I DON'T KNOW WHAT HAPPENS!
+        self.sandline = 135  # Oh it's sand, nvm
         self.grassline = 150
         
     def get_tile(self, name):
@@ -75,121 +64,62 @@ class Tiles(object):
             tile = self.get_tile('swater')
             return(tile)
         elif(value > self.swaterline and value < self.sandline):
-                rand2 = random.random()
-                split = 1.0/5.0
-                if(rand2 <= split):
-                    tile = self.get_tile('sand1')
-                    return(tile)
-                elif(rand2 > split and rand2 <= split*2):
-                    tile = self.get_tile('sand2')
-                    return(tile)
-                elif(rand2 > split*2 and rand2 <= split*3):
-                    tile = self.get_tile('sand3')
-                    return(tile)                   
-                elif(rand2 > split*3 and rand2 <= split*4):
-                    tile = self.get_tile('sand4')
-                    return(tile)
-                else:
-                    tile = self.get_tile('sand5')
-                    return(tile)
+            return(self.get_sand())
         elif(value > self.sandline and value < self.grassline):
             rand = random.random()
             if rand <= 0.6:
-                rand2 = random.random()
-                split = 1.0/5.0
-                if(rand2 <= split):
-                    tile = self.get_tile('sand1')
-                    return(tile)
-                elif(rand2 > split and rand2 <= split*2):
-                    tile = self.get_tile('sand2')
-                    return(tile)
-                elif(rand2 > split*2 and rand2 <= split*3):
-                    tile = self.get_tile('sand3')
-                    return(tile)                   
-                elif(rand2 > split*3 and rand2 <= split*4):
-                    tile = self.get_tile('sand4')
-                    return(tile)
-                else:
-                    tile = self.get_tile('sand5')
-                    return(tile)            
-            elif rand > 0.6 and rand <= 0.985:
-                # Deciding what grass the tile is, makes the ground look more varied.
-                rand2 = random.random()
-                split = 1.0/5.0
-                if(rand2 <= split):
-                    tile = self.get_tile('grass1')
-                    return(tile)
-                elif(rand2 > split and rand2 <= split*2):
-                    tile = self.get_tile('grass2')
-                    return(tile)
-                elif(rand2 > split*2 and rand2 <= split*3):
-                    tile = self.get_tile('grass3')
-                    return(tile)                   
-                elif(rand2 > split*3 and rand2 <= split*4):
-                    tile = self.get_tile('grass4')
-                    return(tile)
-                else:
-                    tile = self.get_tile('grass5')
-                    return(tile)
-            elif rand > 0.985 and rand <= 0.99:
-                #Bush
-                tile = self.get_tile('bush')
-                return(tile)
-            elif rand > 0.99 and rand <= 1:
-                #Flower
-                rand2 = random.randint(1,4)
-                if rand2 == 1:
-                    tile = self.get_tile('flower1')
-                    return(tile)
-                if rand2 == 2: 
-                    tile = self.get_tile('flower2')
-                    return(tile)
-                if rand2 == 3:               
-                    tile = self.get_tile('flower3')
-                    return(tile)
-                if rand2 == 4:       
-                    tile = self.get_tile('flower4')
-                    return(tile)
+                return(self.get_sand())            
+            elif rand > 0.6:
+                return(self.get_grass())
         elif(value > self.sandline):
-            rand = random.random()            
-            if rand <= 0.985:
-                # Deciding what grass the tile is, makes the ground look more varied.
-                rand2 = random.random()
-                split = 1.0/5.0
-                if(rand2 <= split):
-                    tile = self.get_tile('grass1')
-                    return(tile)
-                elif(rand2 > split and rand2 <= split*2):
-                    tile = self.get_tile('grass2')
-                    return(tile)
-                elif(rand2 > split*2 and rand2 <= split*3):
-                    tile = self.get_tile('grass3')
-                    return(tile)                   
-                elif(rand2 > split*3 and rand2 <= split*4):
-                    tile = self.get_tile('grass4')
-                    return(tile)
-                else:
-                    tile = self.get_tile('grass5')
-                    return(tile)
-            elif rand > 0.985 and rand <= 0.99:
-                #Bush
-                tile = self.get_tile('bush')
-                return(tile)
-            elif rand > 0.99 and rand <= 1:
-                #Flower
-                rand2 = random.randint(1,4)
-                if rand2 == 1:
-                    tile = self.get_tile('flower1')
-                    return(tile)
-                if rand2 == 2: 
-                    tile = self.get_tile('flower2')
-                    return(tile)
-                if rand2 == 3:               
-                    tile = self.get_tile('flower3')
-                    return(tile)
-                if rand2 == 4:       
-                    tile = self.get_tile('flower4')
-                    return(tile)
+            return(self.get_grass())
+
+    def get_sand(self):
+        rand = random.random()
+        split = 1.0/5.0
+        if(rand <= split):
+            tile = self.get_tile('sand1')
+        elif(rand > split and rand <= split*2):
+            tile = self.get_tile('sand2')
+        elif(rand > split*2 and rand <= split*3):
+            tile = self.get_tile('sand3')                  
+        elif(rand > split*3 and rand <= split*4):
+            tile = self.get_tile('sand4')
+        else:
+            tile = self.get_tile('sand5')
+        return(tile)
+
+    def get_grass(self):
+        rand = random.random()
+        if rand <= 0.985:
+            # Deciding what grass the tile is, makes the ground look more varied.
+            rand2 = random.random()
+            split = 1.0/5.0
+            if(rand2 <= split):
+                tile = self.get_tile('grass1')
+            elif(rand2 > split and rand2 <= split*2):
+                tile = self.get_tile('grass2')
+            elif(rand2 > split*2 and rand2 <= split*3):
+                tile = self.get_tile('grass3')
+            elif(rand2 > split*3 and rand2 <= split*4):
+                tile = self.get_tile('grass4')
+            else:
+                tile = self.get_tile('grass5')
+        elif rand > 0.985 and rand <= 0.99:
+            #Bush
+            tile = self.get_tile('bush')
+        elif rand > 0.99 and rand <= 1:
+            #Flower
+            rand2 = random.randint(1,4)
+            if rand2 == 1:
+                tile = self.get_tile('flower1')
+            if rand2 == 2: 
+                tile = self.get_tile('flower2')
+            if rand2 == 3:               
+                tile = self.get_tile('flower3')
+            if rand2 == 4:       
+                tile = self.get_tile('flower4')
+        return(tile)        
                 
 Tiles = Tiles() #making a tiles object to do stuff with
 
@@ -202,11 +132,12 @@ class Chunk(object):
     
 ##Chunk Initialization    
     
-    def __init__(self,(x,y), size, map):
+    def __init__(self,(x,y), size, map, tileSize):
         self.x = x
         self.y = y
-        self.tileList = numpy.zeros([size,size], dtype=Tile)
-        self.surface = pygame.Surface((size*variables.tileSize,size*variables.tileSize))
+        self.tileSize = tileSize
+        self.tileList = zeros([size,size], dtype=Tile)
+        self.surface = pygame.Surface((size*self.tileSize,size*self.tileSize))
         self.originalSurface = self.surface
         #This variable is for later
         valueAvg = 0
@@ -219,7 +150,7 @@ class Chunk(object):
                     #and stores it into its tileList
                     self.tileList[x][y] = Tiles.generate_tile(value)
                     #Then it blits the tile onto its surface
-                    self.tileList[x][y].draw(self.surface, (x*variables.tileSize,y*variables.tileSize))
+                    self.tileList[x][y].draw(self.surface, (x*self.tileSize,y*self.tileSize))
                     #And BAM! we got ourselves a nice new chunk with a bunch of tiles and its
                     #very own surface
                     
@@ -250,7 +181,7 @@ class Chunk(object):
             #and scales its original surface to the new one.
             pygame.transform.scale(self.originalSurface,self.surface.get_size(),self.surface)
             #badda bing badda boom.
-        surface.blit(self.surface,(self.x*scale*variables.tileSize-x,self.y*scale*variables.tileSize-y))
+        surface.blit(self.surface,(self.x*scale*self.tileSize-x,self.y*scale*self.tileSize-y))
     def get_surface(self):
         return(self.surface)
 
@@ -260,20 +191,25 @@ class World(object):
     
 ##World initialization
     
-    def __init__(self, camera, width, height):
+    def __init__(self, camera, width, height, chunkSize, tileSize, screen, windowWidth, windowHeight):
         self.camera = camera
         self.height = height #world height, in chunks.
         self.width = width
-        self.chunkSize = variables.chunkSize #chunk size, in worlds. I mean tiles.
-        self.tileSize = variables.tileSize 
-        self.objectSurface = pygame.Surface((variables.windowWidth, variables.windowHeight)) # Surface for objects to draw themselves on
-        self.chunks = numpy.zeros([self.width, self.height],dtype=Chunk) #REMEMBER THOSE CHUNKS FRUM B4? YEAH THEY LIVE IN HERE.
+        self.chunkSize = chunkSize #chunk size, in worlds. I mean tiles.
+        self.tileSize = tileSize 
+        
+        self.objectSurface = pygame.Surface((windowWidth, windowHeight)) # Surface for objects to draw themselves on
+        
+        self.chunks = zeros([self.width, self.height],dtype=Chunk) #REMEMBER THOSE CHUNKS FRUM B4? YEAH THEY LIVE IN HERE.
         self.offsetX = 0
         self.offsetY = 0
+        self.scale = 0.25
+        self.pixelWidth = self.width*self.chunkSize*self.tileSize
+        self.pixelHeight = self.height*self.chunkSize*self.tileSize        
         
         '''This so-called 'map' is a matrix thingy that holds all the raw world data values. 
         This is what gets passed to the chunks when they're created'''
-        map = IslandGenerator().generate_island(self.width*self.chunkSize,self.height*self.chunkSize,.125,6) 
+        map = island_generator.IslandGenerator().generate_island(self.width*self.chunkSize,self.height*self.chunkSize,.125,6, screen) 
         print(len(map))
         print(len(map[0]))
         
@@ -284,7 +220,7 @@ class World(object):
         for x in range(0, self.width):
             for y in range(0, self.height):
                 c+=1
-                self.chunks[x][y] = Chunk((x*self.chunkSize,y*self.chunkSize), self.chunkSize, map)
+                self.chunks[x][y] = Chunk((x*self.chunkSize,y*self.chunkSize), self.chunkSize, map, self.tileSize)
         print('chunks generated.')
         
         self.worldGroup = pygame.sprite.Group()
@@ -303,46 +239,36 @@ class World(object):
 ##Chunk Updating                
         (pX,pY) = self.camera.get_pos() #these coordinates are in pixels, so...
         display = pygame.display.get_surface()
-        (self.offsetX,self.offsetY) = (pX*variables.scale-display.get_width()/2,pY*variables.scale-display.get_height()/2)
+        (self.offsetX,self.offsetY) = (pX*self.scale-display.get_width()/2,pY*self.scale-display.get_height()/2)
         pX = int(pX/self.tileSize/self.chunkSize)#we convert them to tile and then chunk coords
         pY = int(pY/self.tileSize/self.chunkSize)
-        
+
         windowWidth = screen.get_width()
         windowHeight = screen.get_height()
-        
-        renderRangeX = variables.realWorldWidth-windowWidth/variables.tileSize/variables.chunkSize+1
-        renderRangeY = variables.realWorldHeight-windowHeight/variables.tileSize/variables.chunkSize+1
-        
-        #int((float(display.get_width())/(float(variables.realWorldSize)*variables.scale))*float(variables.worldWidth))+1
-        
+
+        renderRangeX = self.pixelWidth-windowWidth/self.tileSize/self.chunkSize+1
+        renderRangeY = self.pixelHeight-windowHeight/self.tileSize/self.chunkSize+1        
 
         for x in range(self.width):
             for y in range(self.height):
                 if(x > pX - renderRangeX and x < pX + renderRangeX and y > pY - renderRangeY and y < pY + renderRangeY):
-                    self.chunks[x][y].draw(screen, (self.offsetX, self.offsetY),variables.scale)
+                    self.chunks[x][y].draw(screen, (self.offsetX, self.offsetY),self.scale)
         '''Going through the object list, updating stuff'''
         
 ##Object Updating        
         self.worldGroup.update()
         self.worldGroup.draw(screen)
-        
-    def move(self,direction):
-        
-        '''Not really sure why this function exists in this class, but uh, fuck you, I'm leaving it here.'''
-        
-        moveSpeed = 5
-        if(direction=='left'):
-            if(self.offsetX<0):
-                self.offsetX += moveSpeed
-        elif(direction=='right'):
-            if(self.offsetX>=(variables.windowWidth-self.mapSurface.get_width())+moveSpeed):
-                self.offsetX -= moveSpeed
-        elif(direction=='up'):
-            if(self.offsetY<0):
-                self.offsetY += moveSpeed
-        elif(direction=='down'):
-            if(self.offsetY>=(variables.windowHeight-self.mapSurface.get_height())+moveSpeed):
-                self.offsetY -= moveSpeed
+
+    def scaleUp(self):
+        if(self.scale < 1):
+            self.scale += 0.125
+        elif(self.scale >= 1 and self.scale < 2):
+            self.scale += 0.25
+    def scaleDown(self):
+        if(self.scale > 1):
+            self.scale -= 0.25
+        if(self.scale <= 1 and self.scale >= 0.25):
+            self.scale -= 0.125
 ##Getters/Setters
 ##Or, looking at it again, maybe just getters.
     
@@ -358,16 +284,20 @@ class World(object):
     def get_group(self):
         return(self.worldGroup)   
     def get_chunk(self, (x,y)):
-        x = int(x/variables.tileSize/variables.chunkSize)-1
-        y = int(y/variables.tileSize/variables.chunkSize)-1
+        x = int(x/self.tileSize/self.chunkSize)-1
+        y = int(y/self.tileSize/self.chunkSize)-1
         return(self.chunks[x][y])
     def get_chunks(self):
         return self.chunks
-    #def get_tile(self, (x,y)):
-        #chunkX = int(x/variables.tileSize/variables.chunkSize)
-        #chunkY = int(x/variables.tileSize/variables.chunkSize)
-        #tileX = int(x/variables.tilesSize) - int(x/variables.
-        #self.chunks[chunkX][chunkY].get_tile(
+
+    '''This will be used for testing whether players are in water or land, etc.
+    I didn't finish it though so I'm leaving it here'''
+    
+    # def get_tile(self, (x,y)):
+    #     chunkX = int(x/variables.tileSize/variables.chunkSize)
+    #     chunkY = int(x/variables.tileSize/variables.chunkSize)
+    #     tileX = int(x/variables.tilesSize) - int(x/variables.
+    #     self.chunks[chunkX][chunkY].get_tile(
     
     def get_camera(self):
         return(self.camera)

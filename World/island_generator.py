@@ -1,4 +1,7 @@
-import perlin_noise,random,variables,pygame
+import perlin_noise
+import random
+import pygame
+
 pygame.font.init()
 font=pygame.font.Font('pictures/Font/Market_Deco.ttf',30)
 
@@ -78,13 +81,13 @@ class IslandGenerator:
                 self.map[y][x] = average
 
 
-    def generate_island(self, width, height, frequency, octaves):
+    def generate_island(self, width, height, frequency, octaves, screen):
 
 
         """Generates the actual island."""
 
         pic=font.render('Loading...', 1,(255,255,255))
-        variables.screen.blit(pic, (10,10))        
+        screen.blit(pic, (10,10))        
         pygame.display.flip()
 
         #Uses perlin noise to generate a random noise map. Everything after
@@ -116,13 +119,9 @@ class IslandGenerator:
         
         for i in range(0, someVariable):
             if(count == percentTimer):
-                variables.screen.fill((0,0,0))
-                worldPic=font.render('World dimensions (chunks): '+ str((variables.worldWidth,variables.worldHeight)), 1,(255,255,255))
-                chunkPic = font.render('Chunk size (tiles): '+str(variables.chunkSize), 1,(255,255,255))
-                percentPic=font.render('Generating island: '+str(int(float(i)*100/float(someVariable))) + '%', 1,(255,255,255))
-                variables.screen.blit(worldPic, (10,10))
-                variables.screen.blit(chunkPic, (10,40))            
-                variables.screen.blit(percentPic, (10,70))            
+                screen.fill((0,0,0))
+                percentPic=font.render('Generating island: '+str(int(float(i)*100/float(someVariable))) + '%', 1,(255,255,255))           
+                screen.blit(percentPic, (10,10))            
                 pygame.display.flip()
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:

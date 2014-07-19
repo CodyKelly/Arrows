@@ -1,11 +1,13 @@
-import pygame, variables, math
+'''Pretty straightforward, this class controls
+what gets rendered onto the screen'''
 
 class Camera(object):
-    def __init__(self, (x,y)):
+    def __init__(self, (width,height)):
         self.speed = 10
-        self.name = 'Camera'
-        self.x = x
-        self.y = y
+        self.width = width
+        self.height = height
+        self.x = width/2
+        self.y = height/2
         self.size = 0
         
     def update(self, worldX, worldY):
@@ -31,17 +33,17 @@ class Camera(object):
             else:
                 self.x = 0
         elif(direction=='right'):
-            if(self.x<=variables.realWorldWidth-(self.speed+self.size)):
+            if(self.x<=self.width-(self.speed+self.size)):
                 self.x += self.speed
             else:
-                self.x = variables.realWorldWidth - self.size
+                self.x = self.width - self.size
         elif(direction=='up'):
             if(self.y>=0+self.speed):
                 self.y -= self.speed
             else:
                 self.y = 0
         elif(direction=='down'):
-            if(self.y<=variables.realWorldHeight-(self.speed+self.size)):
+            if(self.y<=self.height-(self.speed+self.size)):
                 self.y += self.speed  
             else:
-                self.y = variables.realWorldHeight - self.size  
+                self.y = self.height - self.size  
