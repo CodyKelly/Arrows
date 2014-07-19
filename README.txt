@@ -6,6 +6,8 @@ Right now it's just an island generator with a minimap.
 
 You can start it by running main.pyw
 
+Requires: pygame, python, numpy
+
 Controls:
 	L - fullscreen mode
 	O - windowed mode
