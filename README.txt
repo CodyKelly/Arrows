@@ -20,6 +20,7 @@ Controls:
 	arrow keys/wasd - move map
 	There's also a minimap that appears if you move your cursor to the left side of the window, cliking on it will drag the map around
 
-You can change the map size in the variables.py file - just be sure that the height is more than the width (or the minimap will screw up)
+You can change the map size and other settings in the settings.ini file 
+	- just be sure that the height is more than the width (or the minimap will screw up)
 
 Note: To enable the output window, change the extension of main.pyw to main.py
