@@ -2,13 +2,10 @@ from numpy import zeros
 import random
 import pygame
 import island_generator
-<<<<<<< HEAD
 from ConfigParser import ConfigParser
 
 settings = ConfigParser()
 settings.read('settings.ini')
-=======
->>>>>>> 4ecb01b3859532b2862cc4f12464180bfeb4ce08
 
 class Tile(object):
     '''A tile just assigns a name to a picture'''
@@ -47,19 +44,11 @@ class Tiles(object):
         print(str(len(self.tiles))+ ' tiles loaded')
         
         '''These values determine what tiles are what'''
-<<<<<<< HEAD
         self.dwaterline = int(settings.get('WorldSettings', 'dwaterline')) # if a value is above this, it's mid-level water
         self.waterline = int(settings.get('WorldSettings', 'waterline')) # if a value is above this, it's shallow water
         self.swaterline = int(settings.get('WorldSettings', 'swaterline')) # if a value is above this, I DON'T KNOW WHAT HAPPENS!
         self.sandline = int(settings.get('WorldSettings', 'sandline'))  # Oh it's sand, nvm
         self.grassline = int(settings.get('WorldSettings', 'grassline'))
-=======
-        self.dwaterline = 50 # if a value is above this, it's mid-level water
-        self.waterline = 90 # if a value is above this, it's shallow water
-        self.swaterline = 100 # if a value is above this, I DON'T KNOW WHAT HAPPENS!
-        self.sandline = 135  # Oh it's sand, nvm
-        self.grassline = 150
->>>>>>> 4ecb01b3859532b2862cc4f12464180bfeb4ce08
         
     def get_tile(self, name):
         for t in self.tiles:
@@ -69,7 +58,6 @@ class Tiles(object):
         '''So uh, here we get a value and decide what kinda tile it is depending
         on the variables defined above (water line, sand line, etc.)
         and yeah that's all I have to say about that.'''
-<<<<<<< HEAD
         if value < self.dwaterline :
             tile = self.get_tile('dwater')
             return(tile)
@@ -88,26 +76,6 @@ class Tiles(object):
             elif rand >= 0.6:
                 return(self.get_grass())
         elif value >= self.grassline :
-=======
-        if(value < self.dwaterline):
-            tile = self.get_tile('dwater')
-            return(tile)
-        elif(value < self.waterline and value > self.dwaterline): 
-            tile = self.get_tile('water')
-            return(tile)
-        elif(value < self.swaterline and value > self.waterline):
-            tile = self.get_tile('swater')
-            return(tile)
-        elif(value > self.swaterline and value < self.sandline):
-            return(self.get_sand())
-        elif(value > self.sandline and value < self.grassline):
-            rand = random.random()
-            if rand <= 0.6:
-                return(self.get_sand())            
-            elif rand > 0.6:
-                return(self.get_grass())
-        elif(value > self.sandline):
->>>>>>> 4ecb01b3859532b2862cc4f12464180bfeb4ce08
             return(self.get_grass())
 
     def get_sand(self):
@@ -227,7 +195,6 @@ class World(object):
     
 ##World initialization
     
-<<<<<<< HEAD
     def __init__(self, screen, windowWidth, windowHeight):
         # World Settings
         self.height = int(settings.get('WorldSettings', 'world_height')) #world height, in chunks.
@@ -235,17 +202,6 @@ class World(object):
         self.chunkSize = int(settings.get('WorldSettings', 'chunk_size')) #chunk size, in worlds. I mean tiles.
         self.tileSize = int(settings.get('WorldSettings', 'tile_size'))
         self.objectSurface = pygame.Surface((windowWidth, windowHeight)) # Surface for objects to draw themselves on
-=======
-    def __init__(self, camera, width, height, chunkSize, tileSize, screen, windowWidth, windowHeight):
-        self.camera = camera
-        self.height = height #world height, in chunks.
-        self.width = width
-        self.chunkSize = chunkSize #chunk size, in worlds. I mean tiles.
-        self.tileSize = tileSize 
-        
-        self.objectSurface = pygame.Surface((windowWidth, windowHeight)) # Surface for objects to draw themselves on
-        
->>>>>>> 4ecb01b3859532b2862cc4f12464180bfeb4ce08
         self.chunks = zeros([self.width, self.height],dtype=Chunk) #REMEMBER THOSE CHUNKS FRUM B4? YEAH THEY LIVE IN HERE.
         self.offsetX = 0
         self.offsetY = 0
@@ -255,13 +211,9 @@ class World(object):
         
         '''This so-called 'map' is a matrix thingy that holds all the raw world data values. 
         This is what gets passed to the chunks when they're created'''
-<<<<<<< HEAD
         frequency = float(settings.get('WorldSettings', 'frequency'))
         octaves = int(settings.get('WorldSettings', 'octaves'))
         map = island_generator.IslandGenerator().generate_island(self.width*self.chunkSize,self.height*self.chunkSize,frequency,octaves, screen)
-=======
-        map = island_generator.IslandGenerator().generate_island(self.width*self.chunkSize,self.height*self.chunkSize,.125,6, screen) 
->>>>>>> 4ecb01b3859532b2862cc4f12464180bfeb4ce08
         print(len(map))
         print(len(map[0]))
         
@@ -283,27 +235,16 @@ class World(object):
         
 ##World Updating
 
-<<<<<<< HEAD
     def update(self, screen, camera):
-=======
-    def update(self, screen):
->>>>>>> 4ecb01b3859532b2862cc4f12464180bfeb4ce08
         '''So here we're gonna update only the chunks immediately surrounding
         the camera. In my old system the whole map was updated all at once so believe me
         when I say that this is a huge improvement.'''
         
 ##Chunk Updating                
-<<<<<<< HEAD
         (pX,pY) = camera.get_pos() #these coordinates are in pixels, so...
         display = pygame.display.get_surface()
         (self.offsetX,self.offsetY) = (pX*self.scale-display.get_width()/2,pY*self.scale-display.get_height()/2)
         pX = int(pX/self.tileSize/self.chunkSize)  # we convert them to tile and then chunk coordinates
-=======
-        (pX,pY) = self.camera.get_pos() #these coordinates are in pixels, so...
-        display = pygame.display.get_surface()
-        (self.offsetX,self.offsetY) = (pX*self.scale-display.get_width()/2,pY*self.scale-display.get_height()/2)
-        pX = int(pX/self.tileSize/self.chunkSize)#we convert them to tile and then chunk coords
->>>>>>> 4ecb01b3859532b2862cc4f12464180bfeb4ce08
         pY = int(pY/self.tileSize/self.chunkSize)
 
         windowWidth = screen.get_width()
@@ -361,7 +302,6 @@ class World(object):
     #     chunkY = int(x/variables.tileSize/variables.chunkSize)
     #     tileX = int(x/variables.tilesSize) - int(x/variables.
     #     self.chunks[chunkX][chunkY].get_tile(
-<<<<<<< HEAD
 
     def get_chunk_width(self):
         return(self.width/self.chunkSize)
@@ -378,12 +318,3 @@ class World(object):
             return self.width, self.height
         else:
             raise Exception('Not a valid size type')
-=======
-    
-    def get_camera(self):
-        return(self.camera)
-    def getChunkWidth(self):
-        return(self.width/self.chunkSize)
-    def getChunkHeight(self):
-        return(self.height/self.chunkSize)
->>>>>>> 4ecb01b3859532b2862cc4f12464180bfeb4ce08
