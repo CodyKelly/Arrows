@@ -14,10 +14,20 @@ class UI(object):
                 self.surface.blit(pygame.transform.scale(world.chunks[x][y].get_surface(), (self.width/world.width,self.height/world.height)),(x*self.width/world.width,y*self.height/world.height))
         self.world = world
         
+<<<<<<< HEAD
     def update(self, screen, world, clock, debug, camera):
         (mouseX,mouseY) = pygame.mouse.get_pos()
         if(mouseX < self.width):
             newMap = self.surface.copy()
+=======
+    def update(self, screen, world, clock, debug):
+        camera = world.get_camera()
+        (mouseX,mouseY) = pygame.mouse.get_pos()
+        if(mouseX < self.width):
+            newMap = self.surface.copy()
+            camera = world.get_camera()
+            
+>>>>>>> 4ecb01b3859532b2862cc4f12464180bfeb4ce08
             # calculating center of camera rect in minimap
             (cx,cy) = camera.get_pos()
             cx = cx/world.tileSize*self.width/world.width/world.chunkSize
@@ -52,13 +62,21 @@ class UI(object):
                 self.texts('Speed: '+str(camera.speed), (5,30), screen)
                 
                 self.texts('Scale: '+str(world.scale), (5,60), screen)            
+<<<<<<< HEAD
     def click(self, mousePos, camera):
+=======
+    def click(self, mousePos):
+>>>>>>> 4ecb01b3859532b2862cc4f12464180bfeb4ce08
         rect = self.surface.get_rect()
         if(rect.collidepoint(mousePos)):
             (x,y) = mousePos
             x = x*self.world.tileSize*self.world.chunkSize*self.world.width/self.width
             y = y*self.world.tileSize*self.world.chunkSize*self.world.height/self.height
+<<<<<<< HEAD
             camera.set_pos((x,y))
+=======
+            self.world.camera.set_pos((x,y))
+>>>>>>> 4ecb01b3859532b2862cc4f12464180bfeb4ce08
             return(True)    
         
     def texts(self,text, (x,y), screen):

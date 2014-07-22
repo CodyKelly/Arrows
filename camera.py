@@ -2,7 +2,11 @@
 what gets rendered onto the screen'''
 
 class Camera(object):
+<<<<<<< HEAD
     def __init__(self, (width, height)):
+=======
+    def __init__(self, (width,height)):
+>>>>>>> 4ecb01b3859532b2862cc4f12464180bfeb4ce08
         self.speed = 10
         self.width = width
         self.height = height
