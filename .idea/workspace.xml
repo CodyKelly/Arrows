@@ -1,47 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c2b7b87-a17e-4c1c-b39b-0d5bede0db5f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/Font/LiquidCrystal-Normal.otf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/Font/Market_Deco.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/bork.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/bush.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/Font/cubic.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/dwater.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/flowers/flower1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/flowers/flower2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/flowers/flower3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/flowers/flower4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/grass/grass1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/grass/grass2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/grass/grass3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/grass/grass4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/grass/grass5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/sand/sand1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/sand/sand2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/sand/sand3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/sand/sand4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/sand/sand5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/swater.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/Font/tfb.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/water.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/Arrows.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/README.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/World/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/camera.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/World/island_generator.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/main.pyw" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/World/perlin_noise.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/settings.ini" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ui.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/World/world.py" />
+    <list default="true" id="7c2b7b87-a17e-4c1c-b39b-0d5bede0db5f" name="Default" comment="Cleaned up some code and added some new settings">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="settings.ini" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="settings.ini" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/settings.ini">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="188" max-vertical-offset="1144">
+            <state vertical-scroll-proportion="-0.110091746" vertical-offset="490" max-vertical-offset="1144">
               <caret line="19" column="15" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
               <folding />
             </state>
@@ -75,7 +36,7 @@
       <file leaf-file-name="island_generator.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/World/island_generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2627" max-vertical-offset="4026">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2603" max-vertical-offset="4026">
               <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
@@ -84,10 +45,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.pyw" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.pyw" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.pyw">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.34321374" vertical-offset="220" max-vertical-offset="3014">
+            <state vertical-scroll-proportion="0.0" vertical-offset="220" max-vertical-offset="3014">
               <caret line="20" column="65" selection-start-line="20" selection-start-column="65" selection-end-line="20" selection-end-column="65" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -140,6 +101,7 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="hoyohoyo9 &lt;kelly.cody@gmail.com&gt;" />
         <option value="CodyKelly &lt;codykellydesign@gmail.com" />
       </list>
     </option>
@@ -413,7 +375,11 @@
       <created>1405996918969</created>
       <updated>1405996918969</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Cleaned up some code and added some new settings">
+      <created>1405997704349</created>
+      <updated>1405997704349</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -438,10 +404,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="215" y="0" width="1315" height="1200" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913843" sideWeight="0.49960473" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32913843" sideWeight="0.49960473" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32913843" sideWeight="0.49960473" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913843" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="25" y="430" width="1265" height="340" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913843" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -553,24 +519,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/World/island_generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2627" max-vertical-offset="4026">
-          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="188" max-vertical-offset="1144">
-          <caret line="19" column="15" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/World/world.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="572" max-vertical-offset="5720">
@@ -585,11 +533,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.pyw">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34321374" vertical-offset="220" max-vertical-offset="3014">
+        <state vertical-scroll-proportion="0.0" vertical-offset="220" max-vertical-offset="3014">
           <caret line="20" column="65" selection-start-line="20" selection-start-column="65" selection-end-line="20" selection-end-column="65" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/World/island_generator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2603" max-vertical-offset="4026">
+          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.110091746" vertical-offset="490" max-vertical-offset="1144">
+          <caret line="19" column="15" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
