@@ -1,6 +1,9 @@
-import perlin_noise
 import random
+
 import pygame
+
+from data.world import perlin_noise
+
 
 pygame.font.init()
 font=pygame.font.Font('pictures/Font/Market_Deco.ttf',30)

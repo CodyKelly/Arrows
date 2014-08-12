@@ -2,15 +2,18 @@ import sys
 import ctypes
 from ConfigParser import ConfigParser
 
-from pygame import init, image, quit, QUIT, KEYDOWN, K_ESCAPE, FULLSCREEN, K_p, display, time, K_F1, K_EQUALS, K_MINUS, K_LEFTBRACKET, K_RIGHTBRACKET, K_o, K_l, K_r, MOUSEBUTTONDOWN, MOUSEBUTTONUP, mouse, key, K_RIGHT, K_LEFT, K_UP, K_DOWN, K_w, K_a, K_s, K_d
+from pygame import init, image, quit, QUIT, KEYDOWN, K_ESCAPE, FULLSCREEN, K_PERIOD, K_COMMA, K_QUOTE, K_SEMICOLON, K_p, display, time, K_F1, K_EQUALS, K_MINUS, K_LEFTBRACKET, K_RIGHTBRACKET, K_o, K_l, K_r, MOUSEBUTTONDOWN, MOUSEBUTTONUP, mouse, key, K_RIGHT, K_LEFT, K_UP, K_DOWN, K_w, K_a, K_s, K_d
 import pygame.event as events
 
-import ui
-import camera
+import data.ui
+
+
+
 
 
 
 # Settings can be changed in the settings.ini file
+from data import camera
 
 init()
 
@@ -26,7 +29,7 @@ screen = display.set_mode((windowWidth, windowHeight))
 display.set_icon(image.load('pictures/flowers/flower1.png'))
 display.set_caption('Arrows!')
 
-import World.world as World
+import data.world.world as World
 
 world = World.World(screen, windowWidth, windowHeight)
 
@@ -36,7 +39,7 @@ camera = camera.Camera(worldSize)
 
 clock = time.Clock()
 
-UI = ui.UI(world, (windowWidth, windowHeight))
+UI = data.ui.UI(world, (windowWidth, windowHeight))
 
 debug = False  # If true, shows FPS and other data on screen
 
@@ -90,6 +93,14 @@ if __name__ == '__main__':
                         camera.changeSpeed(-10)
                     elif event.key == K_RIGHTBRACKET:
                         camera.changeSpeed(10)
+                    if event.key == K_SEMICOLON:
+                        camera.changeSpeed(-1)
+                    elif event.key == K_QUOTE:
+                        camera.changeSpeed(1)
+                    if event.key == K_COMMA:
+                        camera.changeSpeed(-0.1)
+                    elif event.key == K_PERIOD:
+                        camera.changeSpeed(0.1)
                     if event.key == K_o:
                         display.set_mode((windowWidth, windowHeight))
                     if event.key == K_l:
@@ -100,7 +111,7 @@ if __name__ == '__main__':
                         paused = True
                     if event.key == K_r:
                         world = World.World(screen, windowWidth, windowHeight)
-                        UI = ui.UI(world)
+                        UI = data.ui.UI(world, (windowWidth, windowHeight))
 
                 if event.type == MOUSEBUTTONDOWN:
                     if event.button == 4:

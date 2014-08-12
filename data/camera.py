@@ -6,8 +6,8 @@ class Camera(object):
         self.speed = 10
         self.width = width
         self.height = height
-        self.x = width/2
-        self.y = height/2
+        self.x = float(width/2)
+        self.y = float(height/2)
         self.size = 0
         
     def update(self, worldX, worldY):

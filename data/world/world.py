@@ -1,8 +1,11 @@
-from numpy import zeros
 import random
-import pygame
-import island_generator
 from ConfigParser import ConfigParser
+
+from numpy import zeros
+import pygame
+
+from data.world import island_generator
+
 
 settings = ConfigParser()
 settings.read('settings.ini')
@@ -29,7 +32,6 @@ class Tiles(object):
                       Tile('grass5', 'pictures/grass/grass5.png','land'),
                       Tile('flower1', 'pictures/flowers/flower1.png','land'),
                       Tile('flower2', 'pictures/flowers/flower2.png','land'),
-                      Tile('flower3', 'pictures/flowers/flower3.png','land'),
                       Tile('flower3', 'pictures/flowers/flower3.png','land'),
                       Tile('flower4', 'pictures/flowers/flower4.png','land'),
                       Tile('sand1', 'pictures/sand/sand1.png','land'),
