@@ -1,6 +1,6 @@
 import sys
 import ctypes
-from ConfigParser import ConfigParser
+from configparser import ConfigParser
 
 from pygame import init, image, quit, QUIT, KEYDOWN, K_ESCAPE, FULLSCREEN, K_PERIOD, K_COMMA, K_QUOTE, K_SEMICOLON, K_p, display, time, K_F1, K_EQUALS, K_MINUS, K_LEFTBRACKET, K_RIGHTBRACKET, K_o, K_l, K_r, MOUSEBUTTONDOWN, MOUSEBUTTONUP, mouse, key, K_RIGHT, K_LEFT, K_UP, K_DOWN, K_w, K_a, K_s, K_d
 import pygame.event as events

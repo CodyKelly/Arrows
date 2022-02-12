@@ -5,8 +5,8 @@ pygame.font.init()
 '''This minimap also acts as a kinda-sorta GUI so yeah.'''
 
 class UI(object):
-    def __init__(self, world, (windowWidth, windowHeight)):
-        self.height = windowHeight
+    def __init__(self, world, windowSize):
+        self.height = windowSize[0]
         self.width = self.height*world.width/world.height
         self.surface = pygame.transform.scale(world.get_surface(), (self.width,self.height))
         for x in range(0,world.width):
@@ -61,7 +61,7 @@ class UI(object):
             camera.set_pos((x,y))
             return(True)    
         
-    def texts(self,text, (x,y), screen):
+    def texts(self,text, position, screen):
         font=pygame.font.Font('pictures/Font/Market_Deco.ttf',30)
         textpic=font.render(text, 1,(255,255,255))
-        screen.blit(textpic, (x,y))
+        screen.blit(textpic, position)

@@ -2,7 +2,8 @@
 what gets rendered onto the screen'''
 
 class Camera(object):
-    def __init__(self, (width, height)):
+    def __init__(self, size):
+        width, height = size
         self.speed = 10
         self.width = width
         self.height = height
@@ -23,8 +24,8 @@ class Camera(object):
     def get_speed(self):
         return((self.speed))
     
-    def set_pos(self, (x,y)):
-        (self.x,self.y) = (x,y)    
+    def set_pos(self, position):
+        (self.x,self.y) = position    
     
     def move(self, direction):
         if(direction=='left'):

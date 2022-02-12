@@ -1,5 +1,5 @@
 import random
-from ConfigParser import ConfigParser
+from configparser import ConfigParser
 
 from numpy import zeros
 import pygame
@@ -17,8 +17,8 @@ class Tile(object):
         self.pic = pygame.image.load(pic).convert()
         self.name = name
         self.tileType = tileType
-    def draw(self, surface, (x,y)):
-        surface.blit(self.pic, (x,y))
+    def draw(self, surface, position):
+        surface.blit(self.pic, position)
     def get_type(self):
         return(self.tileType)
     
@@ -138,7 +138,8 @@ class Chunk(object):
     
 ##Chunk Initialization    
     
-    def __init__(self,(x,y), size, map, tileSize):
+    def __init__(self, position, size, map, tileSize):
+        x, y = position
         self.x = x
         self.y = y
         self.tileSize = tileSize
@@ -172,13 +173,14 @@ class Chunk(object):
         self.avgHeight = valueAvg #We'll keep this average height stored because it may be handy later
     def get_type(self):
         return(self.chunkType) 
-    def get_tile(self, (x,y)):
-        
+    def get_tile(self, position):
+        x, y = position
         return(self.tileList[x][y])
                 
 ##Chunk draw function
 
-    def draw(self, surface, (x,y), scale):
+    def draw(self, surface, position, scale):
+        x, y = position
         #the chunk detects a scale change by determining if its original surface width multiplied by the scale is equal to its current surface width.
         if not(int(self.originalSurface.get_width()*scale) == int(self.surface.get_width())):
             self.surface = None
@@ -289,7 +291,8 @@ class World(object):
         
     def get_group(self):
         return(self.worldGroup)   
-    def get_chunk(self, (x,y)):
+    def get_chunk(self, position):
+        x, y = position
         x = int(x/self.tileSize/self.chunkSize)-1
         y = int(y/self.tileSize/self.chunkSize)-1
         return(self.chunks[x][y])
